@@ -1,0 +1,134 @@
+<body style="background-image: url('https://www.publicdomainpictures.net/pictures/190000/velka/crab-nebula-1468780764lSZ.jpg');">
+
+  <div class="grid-container-userpage">
+    <div class="UserEdit">
+      <h2>Edit <%= resource_name.to_s.humanize %></h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+          </div>
+        <% end %>
+        <br>
+
+
+        <div class="field">
+          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <br />
+            <em><%= @minimum_password_length %> characters minimum</em>
+          <% end %>
+        </div>
+        <br>
+
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </div>
+        <br>
+
+        <div class="field">
+          <%= f.label :current_password %> <i>(Confirm Changes)</i><br />
+          <%= f.password_field :current_password, autocomplete: "current-password" %>
+        </div>
+        <br>
+
+        
+        <div class="actions">
+          <%= f.submit "Update" ,  class:"button-update"%>
+        </div>
+      <% end %>
+
+      <br>
+      <br>
+
+      <div>
+        <h3>Unhappy?</h3>
+        <p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class:"button-cancel" %></p>
+      </div>
+    </div>
+
+    <div class="Favorites">
+      <h2 style="color:#FFFFFF">Favorited Events</h2>
+      <table>
+      <tr>
+          <th>Event Name</th>
+          <th>Description</th>
+          <th>Date</th>
+      </tr>
+      <tr>
+          <% current_user.favorites.each do |f| %>
+          <tr>
+              <td> <%= f.event.title %> </td>
+              <td> <%= f.event.description %> </td>
+              <td> <%= f.event.happens_at %></td>
+          </tr>
+          <% end %>
+      </tr>
+
+    </div>
+    
+
+    <div class="User Created Events">
+      <table>
+      <br>
+      <h2 style="color:#FFFFFF">Created Events</h2>
+      <tr>
+          <th>Event Name</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th></th>
+          <th></th>
+
+      </tr>
+      <tr>
+          <% current_user.events.each do |f| %>
+          <tr>
+              <td> <%= f.title %> </td>
+              <td> <%= f.description %> </td>
+              <td> <%= f.happens_at %></td>
+              <td> <%= link_to 'Edit', edit_event_path(f),  class:"button-update"%></td>
+              <td> <%= button_to 'Destroy', event_path(f), method: :delete, data: { confirm: 'Are you sure?' }, class:"button-cancel" %></td>
+          </tr>
+          <% end %>
+      </tr>
+
+    </div>
+
+    <div class="User Created Locations">
+      <table>
+      <br>
+      <h2 style="color:#FFFFFF">Created Locations</h2>
+      <tr>
+          <th>Address</th>
+          <th>Pollution Level</th>
+          <th></th>
+          <th></th>
+
+      </tr>
+      <tr>
+          <% current_user.locations.each do |f| %>
+          <tr>
+              <td> <%= f.name %> </td>
+              <td> <%= f.pollution %> </td>
+              <td> <%= link_to 'Edit', edit_location_path(f),  class:"button-update"%></td>
+
+              <td> <%= button_to 'Destroy', location_path(f), method: :delete, data: { confirm: 'Are you sure?' }, class:"button-cancel" %></td>
+          </tr>
+          <% end %>
+      </tr>
+
+    </div>
+
+
+  </div>
+</body>

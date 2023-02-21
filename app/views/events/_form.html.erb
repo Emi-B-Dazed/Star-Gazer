@@ -1,0 +1,69 @@
+<body style="background-image: url('https://www.publicdomainpictures.net/pictures/190000/velka/crab-nebula-1468780764lSZ.jpg');">
+<div class="white-text">
+<%= form_with(model: event, local: true) do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <body class= "text-center bg-light">
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+
+    </br>
+
+    <div class="field">
+      <%= form.label :description %>
+      <br>
+      <%= form.text_area :description %>
+    </div>
+
+    </br>
+
+    <div class="field">
+      <%= form.label :happens_at %>
+      <br>
+      <%= form.date_field :happens_at %>
+    </div>
+    
+    </br>
+
+
+    <div class="field">
+      <%= form.label :tag %>
+      <br>
+      <%= form.select :tag, [ 'Eclipses', 'Equinoxes', 'Moon Apogee', 'Planet Events', 'Moon-Planet Conjunctions', 'Meteor Showers'], :prompt => 'Select One' %>
+    </div>
+
+    </br>
+
+    <div class="field">
+      <%= form.label :optimal_location %>
+      <br>
+      <%= form.text_field :optimal_location %>
+    </div>
+    
+    </br>
+    
+    <div class="field">
+    <%= form.label :public_bool %>
+    <br>
+    <%= form.select :public_bool, [ 'True', 'False'], :prompt => 'Select One' %>
+    </div>
+
+    </br>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </body>
+  <% end %>

@@ -1,0 +1,27 @@
+<body style="background-image: url('https://www.publicdomainpictures.net/pictures/190000/velka/crab-nebula-1468780764lSZ.jpg');">
+  <div></br></div>
+  <div class="grid-container-event">
+    <div></div>
+    <div class="event-area">
+          <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold"><%= @event.title %></h1>
+            <p>Description: <%= @event.description %></p>
+            <p>Date of Event: <%= @event.happens_at %></p>
+            <p>Optimal Location: <%= @event.optimal_location %></p>
+            <p>Tag: <%= @event.tag%></p>
+
+
+            <% if user_signed_in? %>
+
+                  
+                  <div class="favorite">
+                    <% if current_user.favorites.find_by(event_id: @event.id) %>
+                      <a href="#" class="card-link">        <td><%= button_to "Unfavorite", event_favorite_path(@event, current_user.favorites.find_by(event_id: @event.id)), method: :delete, class:"button-cancel" %></td></a>
+                    <% else %>
+                      <a href="#" class="card-link">        <td><%= button_to "Favorite", event_favorites_path(@event), class:"button-favorite" %></td></a>
+                    <% end %>
+                  </div>
+
+          <% end %>
+        </div>
+    </div>

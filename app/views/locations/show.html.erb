@@ -1,0 +1,14 @@
+<body style="background-image: url('https://images.pexels.com/photos/6498990/pexels-photo-6498990.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');">
+  <div></br></div>
+  <div class="grid-container-event">
+    <div></div> 
+    <div class="event-area">
+          <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold"><%= @location.name %></h1>
+            <br>
+            <p>Latitude: <%= @location.latitude %></p>
+            <p>Longitude: <%= @location.longitude %></p>
+            <p>Pollution Level: <%= @location.pollution %></p>
+        </div>
+        <%= link_to 'Back', edit_user_registration_path, class:"button-cancel" %>
+    </div>
